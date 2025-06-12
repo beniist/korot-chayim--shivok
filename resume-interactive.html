@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קורות חיים - בנימין אור איסטנר</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #333;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #2c5530, #4CAF50, #2c5530);
+        }
+        
+        .toolbar {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .toolbar button {
+            margin: 0 5px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            background: #2c5530;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .toolbar button:hover {
+            background: #4CAF50;
+            transform: translateY(-2px);
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #2c5530;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2c5530, #4CAF50);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-image::before {
+            content: '👨‍💼';
+            font-size: 3rem;
+        }
+        
+        .name {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: #2c5530;
+            margin-bottom: 10px;
+            animation: slideInDown 0.8s ease;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            font-size: 1.1rem;
+            animation: slideInUp 0.8s ease;
+        }
+        
+        .contact-item {
+            color: #666;
+            padding: 8px 15px;
+            background: #f8f9fa;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .contact-item:hover {
+            background: #e9ecef;
+            transform: scale(1.05);
+        }
+        
+        .section {
+            margin-bottom: 35px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+        .section:nth-child(6) { animation-delay: 0.5s; }
+        
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c5530;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .section-title:hover {
+            color: #4CAF50;
+        }
+        
+        .section-title::before {
+            content: '📋';
+            margin-left: 10px;
+        }
+        
+        .section-title.marketing::before { content: '📈'; }
+        .section-title.experience::before { content: '💼'; }
+        .section-title.education::before { content: '🎓'; }
+        .section-title.skills::before { content: '⚡'; }
+        .section-title.personal::before { content: '👤'; }
+        
+        .job {
+            margin-bottom: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 10px;
+            border-right: 4px solid #2c5530;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .job::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .job:hover {
+            transform: translateX(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-right-color: #4CAF50;
+        }
+        
+        .job:hover::before {
+            opacity: 1;
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .job-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #2c5530;
+            position: relative;
+        }
+        
+        .company {
+            font-size: 1.1rem;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        
+        .date {
+            font-weight: bold;
+            color: #888;
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid #e9ecef;
+            font-size: 0.9rem;
+        }
+        
+        .job-description {
+            color: #555;
+            line-height: 1.8;
+            position: relative;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+        
+        .skill-category {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border-top: 4px solid #2c5530;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-top-color: #4CAF50;
+        }
+        
+        .skill-category:hover::before {
+            opacity: 1;
+        }
+        
+        .skill-category h4 {
+            color: #2c5530;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            position: relative;
+        }
+        
+        .personal-info {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 25px;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .personal-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .personal-item:last-child {
+            border-bottom: none;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #4CAF50 0%, #2c5530 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background: #2c5530;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .theme-toggle:hover {
+            background: #4CAF50;
+            transform: rotate(180deg);
+        }
+        
+        .dark-theme {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3748 100%);
+            color: #e2e8f0;
+        }
+        
+        .dark-theme .container {
+            background: #2d3748;
+            color: #e2e8f0;
+        }
+        
+        .dark-theme .job {
+            background: linear-gradient(135deg, #374151 0%, #4a5568 100%);
+        }
+        
+        .dark-theme .skill-category {
+            background: linear-gradient(135deg, #374151 0%, #4a5568 100%);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #2c5530, #4CAF50);
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+        
+        .floating-nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            padding: 15px;
+            border-radius: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .nav-item {
+            display: block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #e9ecef;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item.active {
+            background: #2c5530;
+            transform: scale(1.3);
+        }
+        
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        @media print {
+            .toolbar, .theme-toggle, .floating-nav, .progress-bar {
+                display: none !important;
+            }
+            
+            body {
+                background: white !important;
+                padding: 0 !important;
+            }
+            
+            .container {
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                max-width: none !important;
+                padding: 20px !important;
+            }
+            
+            .job, .skill-category {
+                break-inside: avoid;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container { 
+                padding: 20px; 
+                margin: 10px;
+            }
+            .contact-info { 
+                flex-direction: column; 
+                gap: 15px; 
+            }
+            .job-header { 
+                flex-direction: column; 
+            }
+            .toolbar {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 20px;
+            }
+            .floating-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar"></div>
+    
+    <div class="toolbar">
+        <button onclick="printResume()">🖨️ הדפס</button>
+        <button onclick="downloadPDF()">📄 PDF</button>
+        <button onclick="toggleAnimations()">✨ אנימציות</button>
+        <button onclick="toggleFullscreen()">🔍 מסך מלא</button>
+    </div>
+    
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    
+    <div class="floating-nav">
+        <div class="nav-item active" onclick="scrollToSection(0)"></div>
+        <div class="nav-item" onclick="scrollToSection(1)"></div>
+        <div class="nav-item" onclick="scrollToSection(2)"></div>
+        <div class="nav-item" onclick="scrollToSection(3)"></div>
+        <div class="nav-item" onclick="scrollToSection(4)"></div>
+        <div class="nav-item" onclick="scrollToSection(5)"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="profile-image"></div>
+            <div class="name">בנימין אור איסטנר</div>
+            <div class="contact-info">
+                <span class="contact-item" onclick="copyToClipboard('053-23-233-29')">📱 053-23-233-29</span>
+                <span class="contact-item">🏠 האדמו"ר האמצעי, לוד</span>
+                <span class="contact-item">🚗 בעל רשיון נהיגה</span>
+            </div>
+        </div>
+
+        <div class="highlight">
+            מומחה שיווק דיגיטלי עם רקע ייחודי בתחום הבריאות והרווחה - השילוב המושלם לחברת תוספי מזון
+        </div>
+
+        <div class="section">
+            <h2 class="section-title marketing">ניסיון מקצועי בשיווק</h2>
+            
+            <div class="job" onclick="expandJob(this)">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">יועץ שיווק דיגיטלי עצמאי</div>
+                        <div class="company">ייעוץ ושיווק לעסקים קטנים ובינוניים</div>
+                    </div>
+                    <div class="date">2022 - היום</div>
+                </div>
+                <div class="job-description">
+                    פיתוח והטמעה של אסטרטגיות שיווק דיגיטלי מותאמות אישית לעסקים בתחומים מגוונים. אחראי על כלל המערך השיווקי של הלקוחות, כולל תכנון וביצוע קמפיינים ממומנים בפלטפורמות דיגיטליות (פייסבוק ואינסטגרם), פיתוח טקטיקות ואסטרטגיות שיווק התואמות יעדי עסק ותקציב, אופטימיזציה ושדרוג של משפכי מכירות קיימים להגדלת קצב ההמרה, כתיבה שיווקית מקצועית לדפי נחיתה ומודעות ותכנים דיגיטליים, וייעוץ בפיתוח תכנים שיווקיים המותאמים לקהל היעד. המלצות מלקוחות זמינות לפי דרישה.
+                </div>
+            </div>
+
+            <div class="job" onclick="expandJob(this)">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">מנהל שיווק ופיתוח עסקי</div>
+                        <div class="company">פראם יוגה ישראל</div>
+                    </div>
+                    <div class="date">2019 - 2022</div>
+                </div>
+                <div class="job-description">
+                    הקמה וניהול מלא של מערך השיווק החדש עבור פראם יוגה ישראל. הובלת אסטרטגיית השיווק הדיגיטלי מהקמה ועד הטמעה מלאה, פיתוח קורסי היוגה הראשונים של החברה ויצירת מסלולי לימוד חדשניים, ובניית משפכי מכירות שהביאו לגידול משמעותי במספר הלקוחות והרשמות.
+                </div>
+            </div>
+
+            <div class="job" onclick="expandJob(this)">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">הכשרה מקצועית בשיווק דיגיטלי</div>
+                        <div class="company">תכנית הכשרה מקיפה - יוסי לוי</div>
+                    </div>
+                    <div class="date">2018</div>
+                </div>
+                <div class="job-description">
+                    השתתפות בתכנית הכשרה מקצועית בת 9 חודשים בשיווק דיגיטלי לעסקים, הכוללת אסטרטגיות שיווק דיגיטלי מתקדמות, ניהול קמפיינים ממומנים בפלטפורמות שונות, אנליטיקה ומדידת ביצועים, וכתיבה שיווקית וקופי רייטינג.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title experience">ניסיון מקצועי נוסף</h2>
+            
+            <div class="job" onclick="expandJob(this)">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">מטפל אלטרנטיבי עצמאי</div>
+                        <div class="company">פעילות עצמאית</div>
+                    </div>
+                    <div class="date">2005 - 2018</div>
+                </div>
+                <div class="job-description">
+                    מתן טיפולים אלטרנטיביים במסגרת עצמאית, שימוש בידע רחב בתחום הרפואה הפונקציונלית ושיטות הטיפול ההוליסטיות. עבודה ישירה עם לקוחות, הבנה עמיקה של צרכי האדם הפיזיים והרגשיים, ופיתוח יכולת התאמה אישית של גישות טיפוליות שונות.
+                </div>
+            </div>
+
+            <div class="job" onclick="expandJob(this)">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">איש מכירות</div>
+                        <div class="company">דוכן ידיעות - קריון</div>
+                    </div>
+                    <div class="date">2003 - 2005</div>
+                </div>
+                <div class="job-description">
+                    מכירת מנויים לעיתונים ומגזינים, פיתוח כישורי מכירה וקשר לקוחות, הבנת צרכי הלקוח ויצירת חוויית קנייה חיובית.
+                </div>
+            </div>
+
+            <div class="job" onclick="expandJob(this)">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">סוקר טלפוני</div>
+                        <div class="company">מכון סקרים גאו קרטוגרפיה</div>
+                    </div>
+                    <div class="date">2001 - 2003</div>
+                </div>
+                <div class="job-description">
+                    ביצוע סקרים טלפוניים, פיתוח כישורי תקשורת טלפונית ויכולת להשיג שיתוף פעולה מהמרואיינים.
+                </div>
+            </div>
+
+            <div class="job" onclick="expandJob(this)">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">טכנאי מחשבים</div>
+                        <div class="company">חנויות מחשבים פורמנט ואחרות</div>
+                    </div>
+                    <div class="date">1998 - 2001</div>
+                </div>
+                <div class="job-description">
+                    עבודה במעבדות תיקון מחשבים ובחנויות, מתן שירות לקוחות טכני, פתרון בעיות טכניות ויעוץ טכנולוגי.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title education">הכשרה מקצועית ופיתוח אישי</h2>
+            
+            <div class="job" onclick="expandJob(this)">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">מומחיות ברפואה פונקציונלית ושיטות טיפול</div>
+                        <div class="company">לימודים עם ד"ר עדיאל תל-אורן ומומחים נוספים</div>
+                    </div>
+                    <div class="date">2008 - 2019</div>
+                </div>
+                <div class="job-description">
+                    השתתפות פעילה במשך כעשור בהרצאות ומחקרים מתקדמים של ד"ר עדיאל תל-אורן בתחום הרפואה הפונקציונלית. השלמת קורס רפואה פונקציונלית ראשון בישראל (2019). לימוד מעמיק של שיטות טיפול חדשניות כולל תרפיית שלושת המימדים, שיטת "מלה" - הבנת הקשר בין אנרגיה לבריאות האדם, נוירו-פידבק וביו-פידבק אצל ד"ר ענת ברנע, ומגוון קורסים בתחום הטיפול הרגשי והעיסוי הטיפולי.
+                </div>
+            </div>
+
+            <div class="job" onclick="expandJob(this)">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">קורס עיסוי אינטגרטיבי</div>
+                        <div class="company">תל אביב</div>
+                    </div>
+                    <div class="date">2005</div>
+                </div>
+                <div class="job-description">
+                    הכשרה מקצועית בעיסוי אינטגרטיבי, הבנת חיבור הגוף-נפש ושיטות טיפול הוליסטיות.
+                </div>
+            </div>
+
+            <div class="job" onclick="expandJob(this)">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">קורס טכנאי מחשבים</div>
+                        <div class="company">מכללת סיון</div>
+                    </div>
+                    <div class="date">1997</div>
+                </div>
+                <div class="job-description">
+                    הכשרה טכנית מקצועית בתחום מחשבים ורשתות.
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%); padding: 20px; border-radius: 10px; margin-top: 20px; border-right: 4px solid #28a745;">
+                <strong>השקעה בפיתוח מקצועי:</strong> השקעה של כ-100,000 ₪ בהכשרות שיווק דיגיטלי - מחויבות רצינית ללמידה מתמשכת בתחום השיווק הדיגיטלי.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title skills">השכלה ומיומנויות</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>🎓 השכלה</h4>
+                    <p>בוגר 12 שנות לימוד + בגרות מלאה</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>🌍 שפות</h4>
+                    <p><strong>עברית:</strong> ברמה מצויינת<br>
+                    <strong>אנגלית:</strong> ברמה סבירה</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>💻 מיומנויות טכניות</h4>
+                    <p>שיווק דיגיטלי, ניהול קמפיינים, כתיבה שיווקית, אנליטיקה</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>🤝 מיומנויות אישיות</h4>
+                    <p>תקשורת, מכירות, עבודה בצוות, יכולת למידה עצמית</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title personal">פרטים אישיים</h2>
+            
+            <div class="personal-info">
+                <div class="personal-item">
+                    <span>מספר תעודת זהות:</span>
+                    <span>031802317</span>
+                </div>
+                <div class="personal-item">
+                    <span>שנת לידה:</span>
+                    <span>1974</span>
+                </div>
+                <div class="personal-item">
+                    <span>מצב משפחתי:</span>
+                    <span>רווק</span>
+                </div>
+                <div class="personal-item">
+                    <span>שירות צבאי:</span>
+                    <span>חיל הים, שומר מתקנים (1996)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isDarkTheme = false;
+        let animationsEnabled = true;
+        
+        // פונקציות אינטראקטיביות
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('dark-theme', isDarkTheme);
+            document.querySelector('.theme-toggle').textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+        
+        function printResume() {
+            window.print();
+        }
+        
+        function downloadPDF() {
+            // הוספת מודעה למשתמש
+            alert('לכבוד המשתמש: פונקציונליות ה-PDF דורשת ספרייה חיצונית. אנא השתמש באפשרות הדפסה ובחר "שמור כ-PDF"');
+        }
+        
+        function toggleAnimations() {
+            animationsEnabled = !animationsEnabled;
+            const style = document.createElement('style');
+            if (!animationsEnabled) {
+                style.textContent = '* { animation: none !important; transition: none !important; }';
+            }
+            document.head.appendChild(style);
+        }
+        
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+        
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const notification = document.createElement('div');
+                notification.textContent = 'מספר הטלפון הועתק!';
+                notification.style.cssText = `
+                    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                    background: #4CAF50; color: white; padding: 15px 25px; border-radius: 8px;
+                    font-weight: bold; z-index: 10000; animation: fadeInOut 2s ease;
+                `;
+                document.body.appendChild(notification);
+                setTimeout(() => notification.remove(), 2000);
+            });
+        }
+        
+        function expandJob(element) {
+            const description = element.querySelector('.job-description');
+            const isExpanded = element.classList.contains('expanded');
+            
+            // איפוס כל הרחבות אחרות
+            document.querySelectorAll('.job.expanded').forEach(job => {
+                job.classList.remove('expanded');
+            });
+            
+            if (!isExpanded) {
+                element.classList.add('expanded');
+                description.style.maxHeight = description.scrollHeight + 'px';
+            }
+        }
+        
+        function scrollToSection(index) {
+            const sections = document.querySelectorAll('.section');
+            sections[index].scrollIntoView({ behavior: 'smooth' });
+            
+            // עדכון ניווט
+            document.querySelectorAll('.nav-item').forEach((item, i) => {
+                item.classList.toggle('active', i === index);
+            });
+        }
+        
+        // מעקב אחר גלילה ועדכון progress bar
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.querySelector('.progress-bar').style.width = scrolled + '%';
+            
+            // עדכון ניווט צף
+            const sections = document.querySelectorAll('.section');
+            let currentSection = 0;
+            
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                    currentSection = index;
+                }
+            });
+            
+            document.querySelectorAll('.nav-item').forEach((item, index) => {
+                item.classList.toggle('active', index === currentSection);
+            });
+        });
+        
+        // הוספת CSS עבור fadeInOut animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInOut {
+                0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                50% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // מעקב אחר כניסה לתצוגה של אלמנטים
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.job, .skill-category').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html> 

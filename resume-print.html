@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קורות חיים - בנימין אור איסטנר (להדפסה)</title>
+    <style>
+        @page {
+            margin: 1.5cm;
+            size: A4;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.4;
+            margin: 0;
+            padding: 0;
+            background: white;
+            color: #000;
+            font-size: 11pt;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .name {
+            font-size: 24pt;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .contact-info {
+            font-size: 10pt;
+            margin-bottom: 10px;
+        }
+        
+        .contact-item {
+            margin: 0 15px;
+            display: inline-block;
+        }
+        
+        .section {
+            margin-bottom: 20px;
+            page-break-inside: avoid;
+        }
+        
+        .section-title {
+            font-size: 14pt;
+            font-weight: bold;
+            border-bottom: 1px solid #000;
+            padding-bottom: 3px;
+            margin-bottom: 10px;
+            page-break-after: avoid;
+        }
+        
+        .job {
+            margin-bottom: 15px;
+            padding: 8px 0;
+            page-break-inside: avoid;
+        }
+        
+        .job-header {
+            margin-bottom: 5px;
+        }
+        
+        .job-title {
+            font-size: 12pt;
+            font-weight: bold;
+            display: inline-block;
+        }
+        
+        .company {
+            font-size: 10pt;
+            font-style: italic;
+            margin-right: 10px;
+        }
+        
+        .date {
+            float: left;
+            font-weight: bold;
+            font-size: 9pt;
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border: 1px solid #ccc;
+        }
+        
+        .job-description {
+            font-size: 10pt;
+            text-align: justify;
+            margin-top: 5px;
+            clear: both;
+        }
+        
+        .skills-grid {
+            display: table;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .skill-category {
+            display: table-cell;
+            width: 25%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            vertical-align: top;
+        }
+        
+        .skill-category h4 {
+            font-size: 11pt;
+            font-weight: bold;
+            margin: 0 0 5px 0;
+        }
+        
+        .skill-category p {
+            font-size: 9pt;
+            margin: 0;
+        }
+        
+        .personal-info {
+            border: 1px solid #000;
+            padding: 10px;
+        }
+        
+        .personal-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3px;
+            font-size: 10pt;
+        }
+        
+        .highlight {
+            background: #f0f0f0;
+            border: 2px solid #000;
+            padding: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 11pt;
+        }
+        
+        .investment-note {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 8px;
+            margin-top: 10px;
+            font-size: 9pt;
+        }
+        
+        /* הסתרת אלמנטים דיגיטליים בהדפסה */
+        .no-print {
+            display: none;
+        }
+        
+        /* וודא שלא יהיו שברי עמוד לא רצויים */
+        h1, h2, h3 {
+            page-break-after: avoid;
+        }
+        
+        .job, .skill-category {
+            page-break-inside: avoid;
+        }
+        
+        /* שיפור איכות הטקסט להדפסה */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="name">בנימין אור איסטנר</div>
+            <div class="contact-info">
+                <span class="contact-item">טלפון: 053-23-233-29</span>
+                <span class="contact-item">כתובת: האדמו"ר האמצעי, לוד</span>
+                <span class="contact-item">בעל רשיון נהיגה</span>
+            </div>
+        </div>
+
+        <div class="highlight">
+            מומחה שיווק דיגיטלי עם רקע ייחודי בתחום הבריאות והרווחה - השילוב המושלם לחברת תוספי מזון
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">ניסיון מקצועי בשיווק</h2>
+            
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">יועץ שיווק דיגיטלי עצמאי</div>
+                    <div class="date">2022 - היום</div>
+                    <div class="company">ייעוץ ושיווק לעסקים קטנים ובינוניים</div>
+                </div>
+                <div class="job-description">
+                    פיתוח והטמעה של אסטרטגיות שיווק דיגיטלי מותאמות אישית לעסקים בתחומים מגוונים. אחראי על כלל המערך השיווקי של הלקוחות, כולל תכנון וביצוע קמפיינים ממומנים בפלטפורמות דיגיטליות (פייסבוק ואינסטגרם), פיתוח טקטיקות ואסטרטגיות שיווק התואמות יעדי עסק ותקציב, אופטימיזציה ושדרוג של משפכי מכירות קיימים להגדלת קצב ההמרה, כתיבה שיווקית מקצועית לדפי נחיתה ומודעות ותכנים דיגיטליים, וייעוץ בפיתוח תכנים שיווקיים המותאמים לקהל היעד. המלצות מלקוחות זמינות לפי דרישה.
+                </div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">מנהל שיווק ופיתוח עסקי</div>
+                    <div class="date">2019 - 2022</div>
+                    <div class="company">פראם יוגה ישראל</div>
+                </div>
+                <div class="job-description">
+                    הקמה וניהול מלא של מערך השיווק החדש עבור פראם יוגה ישראל. הובלת אסטרטגיית השיווק הדיגיטלי מהקמה ועד הטמעה מלאה, פיתוח קורסי היוגה הראשונים של החברה ויצירת מסלולי לימוד חדשניים, ובניית משפכי מכירות שהביאו לגידול משמעותי במספר הלקוחות והרשמות.
+                </div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">הכשרה מקצועית בשיווק דיגיטלי</div>
+                    <div class="date">2018</div>
+                    <div class="company">תכנית הכשרה מקיפה - יוסי לוי</div>
+                </div>
+                <div class="job-description">
+                    השתתפות בתכנית הכשרה מקצועית בת 9 חודשים בשיווק דיגיטלי לעסקים, הכוללת אסטרטגיות שיווק דיגיטלי מתקדמות, ניהול קמפיינים ממומנים בפלטפורמות שונות, אנליטיקה ומדידת ביצועים, וכתיבה שיווקית וקופי רייטינג.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">ניסיון מקצועי נוסף</h2>
+            
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">מטפל אלטרנטיבי עצמאי</div>
+                    <div class="date">2005 - 2018</div>
+                    <div class="company">פעילות עצמאית</div>
+                </div>
+                <div class="job-description">
+                    מתן טיפולים אלטרנטיביים במסגרת עצמאית, שימוש בידע רחב בתחום הרפואה הפונקציונלית ושיטות הטיפול ההוליסטיות. עבודה ישירה עם לקוחות, הבנה עמיקה של צרכי האדם הפיזיים והרגשיים, ופיתוח יכולת התאמה אישית של גישות טיפוליות שונות.
+                </div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">איש מכירות</div>
+                    <div class="date">2003 - 2005</div>
+                    <div class="company">דוכן ידיעות - קריון</div>
+                </div>
+                <div class="job-description">
+                    מכירת מנויים לעיתונים ומגזינים, פיתוח כישורי מכירה וקשר לקוחות, הבנת צרכי הלקוח ויצירת חוויית קנייה חיובית.
+                </div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">סוקר טלפוני</div>
+                    <div class="date">2001 - 2003</div>
+                    <div class="company">מכון סקרים גאו קרטוגרפיה</div>
+                </div>
+                <div class="job-description">
+                    ביצוע סקרים טלפוניים, פיתוח כישורי תקשורת טלפונית ויכולת להשיג שיתוף פעולה מהמרואיינים.
+                </div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">טכנאי מחשבים</div>
+                    <div class="date">1998 - 2001</div>
+                    <div class="company">חנויות מחשבים פורמנט ואחרות</div>
+                </div>
+                <div class="job-description">
+                    עבודה במעבדות תיקון מחשבים ובחנויות, מתן שירות לקוחות טכני, פתרון בעיות טכניות ויעוץ טכנולוגי.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">הכשרה מקצועית ופיתוח אישי</h2>
+            
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">מומחיות ברפואה פונקציונלית ושיטות טיפול</div>
+                    <div class="date">2008 - 2019</div>
+                    <div class="company">לימודים עם ד"ר עדיאל תל-אורן ומומחים נוספים</div>
+                </div>
+                <div class="job-description">
+                    השתתפות פעילה במשך כעשור בהרצאות ומחקרים מתקדמים של ד"ר עדיאל תל-אורן בתחום הרפואה הפונקציונלית. השלמת קורס רפואה פונקציונלית ראשון בישראל (2019). לימוד מעמיק של שיטות טיפול חדשניות כולל תרפיית שלושת המימדים, שיטת "מלה" - הבנת הקשר בין אנרגיה לבריאות האדם, נוירו-פידבק וביו-פידבק אצל ד"ר ענת ברנע, ומגוון קורסים בתחום הטיפול הרגשי והעיסוי הטיפולי.
+                </div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">קורס עיסוי אינטגרטיבי</div>
+                    <div class="date">2005</div>
+                    <div class="company">תל אביב</div>
+                </div>
+                <div class="job-description">
+                    הכשרה מקצועית בעיסוי אינטגרטיבי, הבנת חיבור הגוף-נפש ושיטות טיפול הוליסטיות.
+                </div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">קורס טכנאי מחשבים</div>
+                    <div class="date">1997</div>
+                    <div class="company">מכללת סיון</div>
+                </div>
+                <div class="job-description">
+                    הכשרה טכנית מקצועית בתחום מחשבים ורשתות.
+                </div>
+            </div>
+
+            <div class="investment-note">
+                <strong>השקעה בפיתוח מקצועי:</strong> השקעה של כ-100,000 ₪ בהכשרות שיווק דיגיטלי - מחויבות רצינית ללמידה מתמשכת בתחום השיווק הדיגיטלי.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">השכלה ומיומנויות</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>השכלה</h4>
+                    <p>בוגר 12 שנות לימוד + בגרות מלאה</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>שפות</h4>
+                    <p><strong>עברית:</strong> ברמה מצויינת<br>
+                    <strong>אנגלית:</strong> ברמה סבירה</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>מיומנויות טכניות</h4>
+                    <p>שיווק דיגיטלי, ניהול קמפיינים, כתיבה שיווקית, אנליטיקה</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>מיומנויות אישיות</h4>
+                    <p>תקשורת, מכירות, עבודה בצוות, יכולת למידה עצמית</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">פרטים אישיים</h2>
+            
+            <div class="personal-info">
+                <div class="personal-item">
+                    <span>מספר תעודת זהות:</span>
+                    <span>031802317</span>
+                </div>
+                <div class="personal-item">
+                    <span>שנת לידה:</span>
+                    <span>1974</span>
+                </div>
+                <div class="personal-item">
+                    <span>מצב משפחתי:</span>
+                    <span>רווק</span>
+                </div>
+                <div class="personal-item">
+                    <span>שירות צבאי:</span>
+                    <span>חיל הים, שומר מתקנים (1996)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
