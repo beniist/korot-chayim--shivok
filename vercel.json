@@ -1,0 +1,26 @@
+{
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/interactive",
+      "dest": "/resume-interactive.html"
+    },
+    {
+      "src": "/classic",
+      "dest": "/resume.html"
+    },
+    {
+      "src": "/print",
+      "dest": "/resume-print.html"
+    },
+    {
+      "src": "/template",
+      "dest": "/resume-template.html"
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+} 
