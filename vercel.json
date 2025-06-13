@@ -1,26 +1,32 @@
 {
-  "routes": [
+  "version": 2,
+  "rewrites": [
     {
-      "src": "/",
-      "dest": "/index.html"
+      "source": "/",
+      "destination": "/index.html"
     },
     {
-      "src": "/interactive",
-      "dest": "/resume-interactive.html"
+      "source": "/interactive",
+      "destination": "/resume-interactive.html"
     },
     {
-      "src": "/classic",
-      "dest": "/resume.html"
+      "source": "/classic",
+      "destination": "/resume.html"
     },
     {
-      "src": "/print",
-      "dest": "/resume-print.html"
+      "source": "/print",
+      "destination": "/resume-print.html"
     },
     {
-      "src": "/template",
-      "dest": "/resume-template.html"
+      "source": "/template",
+      "destination": "/resume-template.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ],
-  "cleanUrls": true,
-  "trailingSlash": false
+  "github": {
+    "silent": true
+  }
 } 
